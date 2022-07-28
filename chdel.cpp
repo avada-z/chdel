@@ -11,6 +11,7 @@ int main(int argc, char** argv)
         cout<<"Usage: \n";
         cout<<"-n abc to remove normal characters\n";
         cout<<R"(-s \n to remove special characters)"<<endl;
+        cout<<"-d abc to remove string with characters\n";
         return 0;
     }
     if(string(argv[1])=="-n")
@@ -25,6 +26,28 @@ int main(int argc, char** argv)
             outs=outs+str;
             else
             outs=outs+"\n"+str;
+        }
+        cout<<outs;
+    }
+    else if(string(argv[1])=="-d")
+    {
+        for (string str; getline(cin, str);)
+        {
+            proc=false;
+            for(int i=0; i<string(argv[2]).length(); i++)
+            {
+                for(int j=0; j<str.length(); j++)
+                {
+                    if(str[j]==static_cast<char>(string(argv[2])[i]))
+                    {
+                        proc=true;
+                    }
+                }
+            }
+            if(proc==false)
+            {
+                outs=outs+"\n"+str;
+            }
         }
         cout<<outs;
     }
